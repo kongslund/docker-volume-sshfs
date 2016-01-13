@@ -2,11 +2,11 @@ language: go
 go:
   - 1.4.2
 env:
-  - "PATH=/home/travis/gopath/bin:$PATH" GOOS=linux GOARCH=amd64
+  - "PATH=/home/travis/gopath/bin:$PATH"
 before_install:
   - go get github.com/vieux/docker-volume-sshfs
   - go get github.com/tcnksm/ghr
 script:
-  - go build -v -o dist/docker-volume-sshfs
+  - GOOS=linux GOARCH=amd64 go build -v -o dist/docker-volume-sshfs
 after_success:
   - ghr --username kongslund --token $GITHUB_TOKEN --replace --prerelease --debug pre-release dist/
