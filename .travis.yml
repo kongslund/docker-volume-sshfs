@@ -10,4 +10,4 @@ before_install:
 script:
   - GOOS=linux GOARCH=amd64 go build -v -o dist/docker-volume-sshfs
 after_success:
-  - ghr --username kongslund --token $GITHUB_TOKEN --replace --prerelease --debug pre-release dist/
+  - ghr --username ${GITHUB_USER:?} --token ${GITHUB_TOKEN:?} --replace --prerelease --debug pre-release dist/
