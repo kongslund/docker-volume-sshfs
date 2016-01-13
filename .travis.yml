@@ -4,10 +4,12 @@ go:
 sudo: false
 env:
   - "PATH=/home/travis/gopath/bin:$PATH"
-before_install:
-  - go get github.com/vieux/docker-volume-sshfs
-  - go get github.com/tcnksm/ghr
 script:
-  - GOOS=linux GOARCH=amd64 go build -v -o dist/docker-volume-sshfs
-after_success:
-  - ghr --username ${GITHUB_USER:?} --token ${GITHUB_TOKEN:?} --replace --prerelease --debug pre-release dist/
+  - GOOS=linux GOARCH=amd64 go build -v
+deploy:
+  provider: releases
+  api_key: "${GITHUB_TOKEN:?}"
+  file: "docker-volume-sshfs"
+  skip_cleanup: true
+  on:
+    tags: true
