@@ -2,9 +2,7 @@ language: go
 go:
   - 1.4.2
 env:
-  - "PATH=/home/travis/gopath/bin:$PATH"
-  - "GOOS=linux"
-  - "GOARCH=amd64"
+  - "PATH=/home/travis/gopath/bin:$PATH" GOOS=linux GOARCH=amd64
 before_install:
   - go get github.com/vieux/docker-volume-sshfs
   - go get github.com/tcnksm/ghr
